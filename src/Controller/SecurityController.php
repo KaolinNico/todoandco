@@ -25,7 +25,7 @@ class SecurityController extends AbstractController
     public function registration(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user, ['role' => $this->getUser()->getRoles()]);
+        $form = $this->createForm(UserType::class, $user, ['role' => ($this->getUser()) ? $this->getUser()->getRoles() : ['ROLE_USER']]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
