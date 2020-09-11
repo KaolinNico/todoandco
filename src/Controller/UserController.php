@@ -23,7 +23,7 @@ class UserController extends AbstractController
      */
     public function editAction(User $user, Request $request)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ['role' => $this->getUser()->getRoles()]);
 
         $form->handleRequest($request);
 
