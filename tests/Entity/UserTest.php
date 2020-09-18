@@ -75,7 +75,7 @@ class UserTest extends TestCase
 
     public function testRemoveTask()
     {
-        $taskStub = $this->createMock(Task::class);
+        $taskStub = new Task();
         $this->user->addTask($taskStub);
         $collection = $this->user->getTasks();
         $this->assertEquals(false, $collection->isEmpty());
