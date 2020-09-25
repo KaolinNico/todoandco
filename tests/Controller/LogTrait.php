@@ -10,11 +10,11 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 trait LogTrait
 {
 
-    private function logInAdmin()
+    private function logIn($user, $pass, $roles = ["ROLE_USER"])
     {
         $session = $this->client->getContainer()->get('session');
         $firewallName = 'main';
-        $token = new UsernamePasswordToken('nico', 'nico', $firewallName, array('ROLE_ADMIN'));
+        $token = new UsernamePasswordToken($user, $pass, $firewallName, $roles);
         $session->set('_security_'.$firewallName, serialize($token));
         $session->save();
         $cookie = new Cookie($session->getName(), $session->getId());
@@ -23,12 +23,11 @@ trait LogTrait
 
     private function logInUser()
     {
-        $session = $this->client->getContainer()->get('session');
-        $firewallName = 'main';
-        $token = new UsernamePasswordToken('toto', 'toto', $firewallName, array('ROLE_USER'));
-        $session->set('_security_'.$firewallName, serialize($token));
-        $session->save();
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $this->logIn('toto', 'toto');
+    }
+
+    private function logInAdmin()
+    {
+        $this->logIn('nico', 'nico', ["ROLE_ADMIN"]);
     }
 }
