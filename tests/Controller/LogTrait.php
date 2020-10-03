@@ -11,14 +11,14 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 trait LogTrait
 {
 
-    private function logIn($username, $pass, $roles = ["ROLE_USER"])
+    private function logIn($username)
     {
         $session = self::$container->get('session');
         $userRepository = static::$container->get(UserRepository::class);
         $user = $userRepository->findOneByUsername($username);
 
         $firewallName = 'main';
-        $token = new UsernamePasswordToken($user, $pass, $firewallName, $roles);
+        $token = new UsernamePasswordToken($user, null, $firewallName, $user->getRoles());
         $session->set('_security_'.$firewallName, serialize($token));
         $session->save();
 
@@ -28,11 +28,11 @@ trait LogTrait
 
     private function logInUser()
     {
-        $this->logIn('toto', 'toto');
+        $this->logIn('toto');
     }
 
     private function logInAdmin()
     {
-        $this->logIn('nico', 'nico', ["ROLE_ADMIN"]);
+        $this->logIn('nico');
     }
 }
