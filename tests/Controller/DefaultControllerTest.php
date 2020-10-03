@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
@@ -9,7 +10,7 @@ class DefaultControllerTest extends WebTestCase
     use LogTrait;
 
     /**
-     * @var \Symfony\Bundle\FrameworkBundle\KernelBrowser
+     * @var KernelBrowser
      */
     private $client;
 
