@@ -4,19 +4,24 @@
 namespace App\Tests\Controller;
 
 
+use App\Repository\UserRepository;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 trait LogTrait
 {
 
-    private function logIn($user, $pass, $roles = ["ROLE_USER"])
+    private function logIn($username, $pass, $roles = ["ROLE_USER"])
     {
-        $session = $this->client->getContainer()->get('session');
+        $session = self::$container->get('session');
+        $userRepository = static::$container->get(UserRepository::class);
+        $user = $userRepository->findOneByUsername($username);
+
         $firewallName = 'main';
         $token = new UsernamePasswordToken($user, $pass, $firewallName, $roles);
         $session->set('_security_'.$firewallName, serialize($token));
         $session->save();
+
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
     }
