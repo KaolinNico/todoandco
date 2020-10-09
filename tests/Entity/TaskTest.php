@@ -41,6 +41,8 @@ class TaskTest extends TestCase
     public function testIsDone()
     {
         $this->assertEquals(false, $this->task->IsDone());
+        $this->task->setIsDone(true);
+        $this->assertEquals(true, $this->task->getIsDone());
     }
 
     public function testToggle()

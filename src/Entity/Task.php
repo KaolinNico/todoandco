@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\TaskRepository;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=TaskRepository::class)
  * @ORM\Table
  */
 class Task
@@ -107,5 +108,21 @@ class Task
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return false
+     */
+    public function getIsDone()
+    {
+        return $this->isDone;
+    }
+
+    /**
+     * @param false $isDone
+     */
+    public function setIsDone($isDone): void
+    {
+        $this->isDone = $isDone;
     }
 }
