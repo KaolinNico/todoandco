@@ -33,6 +33,6 @@ trait LogTrait
 
     private function logInAdmin()
     {
-        $this->logIn('nico');
+        $this->logIn('nicolas');
     }
 }
