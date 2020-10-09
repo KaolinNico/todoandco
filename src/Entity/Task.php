@@ -108,16 +108,4 @@ class Task
 
         return $this;
     }
-
-    public function getIsDone(): ?bool
-    {
-        return $this->isDone;
-    }
-
-    public function setIsDone(bool $isDone): self
-    {
-        $this->isDone = $isDone;
-
-        return $this;
-    }
 }
