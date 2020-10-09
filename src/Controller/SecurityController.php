@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,17 +63,19 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/login_check", name="login_check")
+     * @throws Exception
      */
     public function loginCheck()
     {
-        // This code is never executed.
+        throw new Exception("This code should not be reached !");
     }
 
     /**
      * @Route("/logout", name="logout")
+     * @throws Exception
      */
     public function logoutCheck()
     {
-        // This code is never executed.
+        throw new Exception("This code should not be reached !");
     }
 }

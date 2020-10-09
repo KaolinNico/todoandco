@@ -2,17 +2,38 @@
 
 namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    use LogTrait;
+
+    /**
+     * @var KernelBrowser
+     */
+    private $client;
+
+    public function setUp()
     {
-        $client = static::createClient();
+        $this->client = static::createClient();
+    }
 
-        $crawler = $client->request('GET', '/');
+    public function testIndexNotLogged()
+    {
+        $this->client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+
+        $crawler = $this->client->followRedirect();
+        $this->assertSame(2, $crawler->filter('form input#username')->count() + $crawler->filter('form input#password')->count());
+    }
+
+    public function testIndexLogged()
+    {
+        $this->logInUser();
+        $this->client->request('GET', '/');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('Bienvenue sur Todo List', $this->client->getResponse()->getContent());
     }
 }
