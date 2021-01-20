@@ -36,6 +36,47 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\Length(
+     *     min="8",
+     *
+     * )
+     * @Assert\Regex(
+     *     pattern="/[A-Z]/",
+     *     message="Le mot de passe doit contenir au moins une majuscule"
+     * )
+     * @Assert\Regex(
+     *     pattern="/[a-z]/",
+     *     message="Le mot de passe doit contenir au moins une minuscule"
+     * )
+     * @Assert\Regex(
+     *     pattern="/[0-9]/",
+     *     message="Le mot de passe doit contenir au moins un chiffre"
+     * )
+     * @Assert\Regex(
+     *     pattern="/[\W]/",
+     *     message="Le mot de passe doit contenir au moins un caractère spécial"
+     * )
+     */
+    private $plainPassword;
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
      * @ORM\Column(type="string", length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
      * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
