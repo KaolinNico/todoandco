@@ -29,10 +29,10 @@ class SecurityControllerTest extends WebTestCase
         $this->logInAdmin();
         $this->client->request('GET', '/users/create');
         $this->client->submitForm('Ajouter', [
-            "user[username]" => "user",
-            "user[password][first]" => "pass",
-            "user[password][second]" => "pass",
-            "user[email]" => "user@email.email",
+            "user[username]" => "new_user",
+            "user[plainPassword][first]" => "U!1password",
+            "user[plainPassword][second]" => "U!1password",
+            "user[email]" => "new_user@email.email",
             "user[roles]" => ["ROLE_USER"]
         ]);
         $this->client->followRedirect();
