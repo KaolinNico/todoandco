@@ -13,8 +13,8 @@ use Symfony\Component\Security\Core\Security;
 
 class TaskVoter extends Voter
 {
-    const EDIT = 'edit';
-    const DELETE = 'delete';
+    public const EDIT = 'edit';
+    public const DELETE = 'delete';
 
     private $security;
 
