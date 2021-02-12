@@ -1,0 +1,18 @@
+App\Entity\Task:
+    task_user:
+        createdAt: <dateTime()>
+        title: "Ma nouvelle tâche"
+        content: <text()>
+        isDone: false
+        user: "@user"
+    task_admin:
+        createdAt: <dateTime()>
+        title: "Ma nouvelle tâche administrateur"
+        content: <text()>
+        isDone: false
+        user: "@admin"
+    task_anonymous:
+        createdAt: <dateTime()>
+        title: "Mon ancienne tâche"
+        content: <text()>
+        isDone: false

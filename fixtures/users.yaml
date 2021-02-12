@@ -1,0 +1,17 @@
+parameters:
+    hash_user: $2y$12$Mk2jzHPDE1MTxkxtsAFUFuqbp9s7mMreXL3beqUECrwRmIp3O.yjO #password : 1Utilisateur!
+    hash_admin: $2y$12$h0GtlmfziP5WLyyL4iJ2ru876HDUWh16INnHGaY259dtneKvvrZeu #password : 1Administrateur!
+
+
+App\Entity\User:
+    user:
+        username: "demo_user"
+        password: <{hash_user}>
+        email: <email()>
+        roles: ["ROLE_USER"]
+    admin:
+        username: "demo_admin"
+        password: <{hash_admin}>
+        email: <email()>
+        roles: ["ROLE_USER","ROLE_ADMIN"]
+
