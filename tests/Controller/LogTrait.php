@@ -11,6 +11,11 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 trait LogTrait
 {
 
+    private function logInUser()
+    {
+        $this->logIn('demo_user');
+    }
+
     private function logIn($username)
     {
         $session = self::$container->get('session');
@@ -19,16 +24,11 @@ trait LogTrait
 
         $firewallName = 'main';
         $token = new UsernamePasswordToken($user, null, $firewallName, $user->getRoles());
-        $session->set('_security_'.$firewallName, serialize($token));
+        $session->set('_security_' . $firewallName, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
-    }
-
-    private function logInUser()
-    {
-        $this->logIn('demo_user');
     }
 
     private function logInAdmin()

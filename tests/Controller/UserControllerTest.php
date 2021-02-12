@@ -40,11 +40,14 @@ class UserControllerTest extends WebTestCase
         $userRepository = static::$container->get(UserRepository::class);
         $user = $userRepository->findOneByUsername("new_user");
         $this->client->request('GET', '/users/' . $user->getId() . '/edit');
-        $this->client->submitForm('Modifier', [
-            "user[username]" => "username",
-            "user[plainPassword][first]" => "U!123password",
-            "user[plainPassword][second]" => "U!123password",
-        ]);
+        $this->client->submitForm(
+            'Modifier',
+            [
+                "user[username]" => "username",
+                "user[plainPassword][first]" => "U!123password",
+                "user[plainPassword][second]" => "U!123password",
+            ]
+        );
         $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains("a bien été modifié", $this->client->getResponse()->getContent());

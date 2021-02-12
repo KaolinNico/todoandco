@@ -4,6 +4,7 @@ namespace App\Tests\Entity;
 
 use App\Entity\Task;
 use App\Entity\User;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class TaskTest extends TestCase
@@ -22,7 +23,7 @@ class TaskTest extends TestCase
 
     public function testCreatedAt()
     {
-        $this->task->setCreatedAt(new \DateTime);
+        $this->task->setCreatedAt(new DateTime());
         $this->assertEquals(date('Y-m-d H:i:s'), $this->task->getCreatedAt()->format('Y-m-d H:i:s'));
     }
 
