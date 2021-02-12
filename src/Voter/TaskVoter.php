@@ -13,7 +13,6 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class TaskVoter extends Voter
 {
-    const VIEW = 'view';
     const EDIT = 'edit';
     const DELETE = 'delete';
 
@@ -26,7 +25,7 @@ class TaskVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [self::VIEW, self::EDIT, self::DELETE])) {
+        if (!in_array($attribute, [self::EDIT, self::DELETE])) {
             return false;
         }
 
@@ -51,8 +50,6 @@ class TaskVoter extends Voter
         $task = $subject;
 
         switch ($attribute) {
-            case self::VIEW:
-                return $this->canView($task, $user);
             case self::EDIT:
                 return $this->canEdit($task, $user);
             case self::DELETE:
@@ -60,11 +57,6 @@ class TaskVoter extends Voter
         }
 
         throw new LogicException('This code should not be reached!');
-    }
-
-    private function canView(Task $task, User $user)
-    {
-        return true;
     }
 
     private function canEdit(Task $task, User $user)
