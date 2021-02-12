@@ -38,10 +38,13 @@ class TaskControllerTest extends WebTestCase
     {
         $this->logInAdmin();
         $this->client->request('GET', '/tasks/create');
-        $this->client->submitForm('Ajouter', [
-            "task[title]" => "Nouvelle tâche administrateur",
-            "task[content]" => "Ceci est un test de création de tâche !"
-        ]);
+        $this->client->submitForm(
+            'Ajouter',
+            [
+                "task[title]" => "Nouvelle tâche administrateur",
+                "task[content]" => "Ceci est un test de création de tâche !"
+            ]
+        );
         $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains("La tâche a été bien été ajoutée", $this->client->getResponse()->getContent());
@@ -53,10 +56,13 @@ class TaskControllerTest extends WebTestCase
         $taskRepository = static::$container->get(TaskRepository::class);
         $task = $taskRepository->findOneByTitle("Nouvelle tâche administrateur");
         $this->client->request('GET', '/tasks/' . $task->getId() . '/edit');
-        $this->client->submitForm('Modifier', [
-            "task[title]" => "Nouvelle tâche administrateur modifiée",
-            "task[content]" => "Ceci est un test de création de tâche !"
-        ]);
+        $this->client->submitForm(
+            'Modifier',
+            [
+                "task[title]" => "Nouvelle tâche administrateur modifiée",
+                "task[content]" => "Ceci est un test de création de tâche !"
+            ]
+        );
         $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains("La tâche a bien été modifiée", $this->client->getResponse()->getContent());
@@ -88,10 +94,13 @@ class TaskControllerTest extends WebTestCase
     {
         $this->logInUser();
         $this->client->request('GET', '/tasks/create');
-        $this->client->submitForm('Ajouter', [
-            "task[title]" => "Nouvelle tâche utilisateur",
-            "task[content]" => "Ceci est un test de création de tâche !"
-        ]);
+        $this->client->submitForm(
+            'Ajouter',
+            [
+                "task[title]" => "Nouvelle tâche utilisateur",
+                "task[content]" => "Ceci est un test de création de tâche !"
+            ]
+        );
         $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains("La tâche a été bien été ajoutée", $this->client->getResponse()->getContent());
@@ -103,10 +112,13 @@ class TaskControllerTest extends WebTestCase
         $taskRepository = static::$container->get(TaskRepository::class);
         $task = $taskRepository->findOneByTitle("Nouvelle tâche utilisateur");
         $this->client->request('GET', '/tasks/' . $task->getId() . '/edit');
-        $this->client->submitForm('Modifier', [
-            "task[title]" => "Nouvelle tâche utilisateur modifiée",
-            "task[content]" => "Ceci est un test de création de tâche !"
-        ]);
+        $this->client->submitForm(
+            'Modifier',
+            [
+                "task[title]" => "Nouvelle tâche utilisateur modifiée",
+                "task[content]" => "Ceci est un test de création de tâche !"
+            ]
+        );
         $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains("La tâche a bien été modifiée", $this->client->getResponse()->getContent());

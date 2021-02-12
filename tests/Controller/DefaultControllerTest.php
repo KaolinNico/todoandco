@@ -28,7 +28,12 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
 
         $crawler = $this->client->followRedirect();
-        $this->assertSame(2, $crawler->filter('form input#username')->count() + $crawler->filter('form input#password')->count());
+        $this->assertSame(
+            2,
+            $crawler->filter('form input#username')->count() + $crawler->filter(
+                'form input#password'
+            )->count()
+        );
     }
 
     public function testIndexLogged()
