@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Erreur</h1>
+{% block header_title %}
+    <h1>Oops ! Une erreur a été détectée</h1>
+{% endblock %}
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
-    </p>
+{% block body %}
+    <div class="row">
+        Revenir à la <a href="{{ path('homepage') }}">Page d'accueil</a> !
+    </div>
 {% endblock %}
