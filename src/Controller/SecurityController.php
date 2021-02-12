@@ -26,11 +26,14 @@ class SecurityController extends AbstractController
     public function registration(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user, ['role' => ($this->getUser()) ? $this->getUser()->getRoles() : ['ROLE_USER']]);
+        $form = $this->createForm(
+            UserType::class,
+            $user,
+            ['role' => ($this->getUser()) ? $this->getUser()->getRoles() : ['ROLE_USER']]
+        );
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user->setPassword($encoder->encodePassword($user, $user->getPlainPassword()));
 
             $em->persist($user);
@@ -55,10 +58,13 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
+        return $this->render(
+            'security/login.html.twig',
+            [
+                'last_username' => $lastUsername,
+                'error' => $error,
+            ]
+        );
     }
 
     /**

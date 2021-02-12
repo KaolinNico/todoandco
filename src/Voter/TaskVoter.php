@@ -8,8 +8,8 @@ use App\Entity\Task;
 use App\Entity\User;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Security;
 
 class TaskVoter extends Voter
 {
