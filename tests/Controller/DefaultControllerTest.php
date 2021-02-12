@@ -2,11 +2,13 @@
 
 namespace App\Tests\Controller;
 
+use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
+    use RefreshDatabaseTrait;
     use LogTrait;
 
     /**
