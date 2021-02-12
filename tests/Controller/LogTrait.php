@@ -28,11 +28,11 @@ trait LogTrait
 
     private function logInUser()
     {
-        $this->logIn('toto');
+        $this->logIn('demo_user');
     }
 
     private function logInAdmin()
     {
-        $this->logIn('nicolas');
+        $this->logIn('demo_admin');
     }
 }
