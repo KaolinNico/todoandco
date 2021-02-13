@@ -33,4 +33,4 @@ Accepting constructive criticism
 We respect some PSR rules, please respect PSR-1, PSR-12 and PSR-4. Please use  PHPCSFIXER / PHPCS / PHPCBF` to check it.  
 This application is developped with Symfony framework 4.4, please check the [Best Practises](https://symfony.com/doc/4.4/best_practices.html)
 
-Thank you and good code :)
+Thank you !
