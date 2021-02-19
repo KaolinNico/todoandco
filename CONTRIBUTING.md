@@ -10,9 +10,10 @@ First, you have to [clone](https://github.com/KaolinNico/todoandco.git) the proj
 
 ## Install the project
 
-1. run `composer update` command to install dependencies.
+1. run `composer install` command to install dependencies.
 2. run `php bin/console doctrine:database:create` to create database
-3. run `php bin/console hautelook:fixtures:load` to create fixtures.
+3. run `php bin/console doctrine:schema:update --force` to update database
+4. run `php bin/console hautelook:fixtures:load` to create fixtures.
 
 Before starting your changes, create a new branch. This project use [Gitflow](https://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html)
 
